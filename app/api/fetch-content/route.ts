@@ -24,7 +24,7 @@ export async function POST() {
             .then((resp) => resp.json())
             .then(
               async (story: Story) =>
-                await fetch(story.url).then((resp) =>
+                await fetch(story.url, { method: "HEAD" }).then((resp) =>
                   resp.headers.get("x-frame-options") === null ? story : null
                 )
             )
