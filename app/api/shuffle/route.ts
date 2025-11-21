@@ -1,58 +1,64 @@
 import { createClient } from "@/utils/supbase/server";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("stories")
-    .select("*")
-    .limit(20)
-    .order("score", { ascending: false });
-  return NextResponse.json(data);
-}
-
 interface Story {
-  _tags: string[];
+  id: number;
   url: string;
   title: string;
-  author: string;
-  points: number;
-  created_at: string;
-}
-
-interface HackerNewsAPI {
-  hits: Story[];
+  by: string;
+  score: number;
+  time: string;
 }
 
 export async function POST() {
-  const hn: HackerNewsAPI = await fetch(
-    "https://hn.algolia.com/api/v1/search?tags=front_page"
+  const hn: Array<number> = await fetch(
+    "https://hacker-news.firebaseio.com/v0/topstories.json"
   ).then((res) => res.json());
   const supabase = await createClient();
 
   try {
-    if (hn.hits) {
-      const { error } = await supabase.from("stories").insert(
-        hn.hits
-          .filter((story) => !story._tags.includes("ask_hn") || story.url)
-          .map((story) => ({
-            title: story.title,
-            url: story.url,
-            domain: "",
-            author: story.author,
-            score: story.points,
-            created_at: story.created_at,
-            fetched_at: new Date().toISOString(),
-          }))
+    if (hn.length) {
+      const response = await Promise.all(
+        hn.slice(0, 20).map((id: number) =>
+          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+            .then((resp) => resp.json())
+            .then(
+              async (story: Story) =>
+                await fetch(story.url).then((resp) =>
+                  resp.headers.get("x-frame-options") === null ? story : null
+                )
+            )
+        )
       );
-      if (error) {
-        throw error;
-      }
+
+      const filteredUrls = response.filter((story) => story !== null);
+
+      const { error } = await supabase.from("stories").upsert(
+        filteredUrls.map((story) => ({
+          hn_object_id: story.id,
+          title: story.title,
+          url: story.url,
+          domain: "",
+          author: story.by,
+          score: story.score,
+          created_at: new Date(story.time).toISOString(),
+          fetched_at: new Date().toISOString(),
+        })),
+        {
+          onConflict: "hn_object_id",
+        }
+      );
+
+      if (error) throw error;
+
       return NextResponse.json({ success: true });
     }
   } catch (error) {
-    return NextResponse.json({ error });
+    return NextResponse.json(
+      { error: "internal server error" },
+      { status: 500 }
+    );
   }
 
-  return NextResponse.json(hn);
+  return NextResponse.json({});
 }
