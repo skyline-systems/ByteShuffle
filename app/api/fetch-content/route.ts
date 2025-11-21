@@ -19,17 +19,21 @@ export async function POST() {
   try {
     if (hn.length) {
       const response = await Promise.all(
-        hn.slice(0, 20).map((id: number) =>
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-            .then((resp) => resp.json())
-            .then(
-              async (story: Story) =>
-                await fetch(story.url, { method: "HEAD" }).then((resp) =>
-                  resp.headers.get("x-frame-options") === null ? story : null
-                )
+        hn.slice(0, 20).map(
+          (id: number) =>
+            fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
+              (resp) => resp.json()
             )
+          // .then(
+          //   async (story: Story) =>
+          //     await fetch(story.url, { method: "HEAD" }).then((resp) =>
+          //       resp.headers.get("x-frame-options") === null ? story : null
+          //     )
+          // )
         )
       );
+
+      console.log({ response });
 
       const filteredUrls = response.filter((story) => story !== null);
 
