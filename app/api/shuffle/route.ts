@@ -11,8 +11,21 @@ export async function GET() {
   return NextResponse.json(data);
 }
 
+interface Story {
+  _tags: string[];
+  url: string;
+  title: string;
+  author: string;
+  points: number;
+  created_at: string;
+}
+
+interface HackerNewsAPI {
+  hits: Story[];
+}
+
 export async function POST() {
-  const hn = await fetch(
+  const hn: HackerNewsAPI = await fetch(
     "https://hn.algolia.com/api/v1/search?tags=front_page"
   ).then((res) => res.json());
   const supabase = await createClient();
