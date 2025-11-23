@@ -1,6 +1,8 @@
 import { createClient } from "@/utils/supbase/server";
 import { NextResponse } from "next/server";
 
+import dataset from "@/dataset/internetisbeautiful.json";
+
 interface Url {
   url: string;
   id: string;
@@ -12,16 +14,21 @@ interface Url {
   created_at: number;
 }
 
+export async function GET() {
+  return NextResponse.json({ data: dataset });
+}
+
 export async function POST() {
   const supabase = await createClient();
-  const response = await fetch(
-    "https://reddit.com/r/InternetIsBeautiful/top.json?t=all&limit=100",
-    {
-      headers: {
-        "User-Agent": "ByteShuffle/0.1",
-      },
-    }
-  ).then((res) => res.json());
+  // const response = await fetch(
+  //   "https://reddit.com/r/InternetIsBeautiful/top.json?t=all&limit=100",
+  //   {
+  //     headers: {
+  //       "User-Agent": "ByteShuffle/0.1",
+  //     },
+  //   }
+  // ).then((res) => res.json());
+  const response = dataset;
 
   if (response) {
     const urls: Url[] = response.data.children.map((item: any) => ({

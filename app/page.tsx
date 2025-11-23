@@ -1,9 +1,15 @@
 import { createClient } from "@/utils/supbase/server";
+import { App } from "./components/app";
+import { shuffle } from "lodash";
 
 export default async function Page() {
   const supabase = await createClient();
   // TODO: Implement caching with redis
-  const { data, error } = await supabase.from("stories").select("*").limit(20);
+  const { data, error } = await supabase
+    .from("stories")
+    .select("id, url, screenshot_url, title")
+    .not("screenshot_url", "is", null);
+
   if (error || !data || data.length === 0) {
     return (
       <>
@@ -11,18 +17,19 @@ export default async function Page() {
       </>
     );
   }
-  const site = data[Math.floor(Math.random() * data.length)];
 
-  console.log(site);
+  /**
+   * the `shuffledIndexes` array is an array of shuffled indices that correspond to an element
+   * in the sites dataset.
+   */
+
+  const shuffledIndexes = shuffle(
+    new Array(data.length).fill(1).map((x, i) => i)
+  );
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-col h-screen justify-center items-center">
-        <a href={site.url} target="_blank">
-          <img className="mt-4" src={site.screenshot_url} width={800} />
-          <h1 className="text-xl">{site.title}</h1>
-        </a>
-      </div>
+      <App data={data} shuffledIndexes={shuffledIndexes} />
     </div>
   );
 }

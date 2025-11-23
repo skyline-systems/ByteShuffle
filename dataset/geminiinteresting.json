@@ -1,0 +1,704 @@
+{
+  "websites": [
+    {
+      "id": 1,
+      "name": "Neal.fun",
+      "url": "https://neal.fun",
+      "category": "Visuals, Art & Creativity",
+      "description": "A collection of weird and wonderful web experiments."
+    },
+    {
+      "id": 2,
+      "name": "AutoDraw",
+      "url": "https://www.autodraw.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "Google’s AI turns your doodles into professional icons."
+    },
+    {
+      "id": 3,
+      "name": "WindowSwap",
+      "url": "https://www.window-swap.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "Open a new window somewhere in the world and watch the view."
+    },
+    {
+      "id": 4,
+      "name": "This Person Does Not Exist",
+      "url": "https://thispersondoesnotexist.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "AI generates a photo of a person who has never existed."
+    },
+    {
+      "id": 5,
+      "name": "ZoomQuilt",
+      "url": "https://zoomquilt.org",
+      "category": "Visuals, Art & Creativity",
+      "description": "An infinitely zooming artwork that never ends."
+    },
+    {
+      "id": 6,
+      "name": "Drive & Listen",
+      "url": "https://drivenlisten.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "Drive through cities in 4K while listening to local radio."
+    },
+    {
+      "id": 7,
+      "name": "My 90s TV",
+      "url": "https://www.my90stv.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "A simulator for watching 90s TV shows, music videos, and ads."
+    },
+    {
+      "id": 8,
+      "name": "Astronomy Picture of the Day",
+      "url": "https://apod.nasa.gov",
+      "category": "Visuals, Art & Creativity",
+      "description": "NASA’s daily feature of a fascinating space image."
+    },
+    {
+      "id": 9,
+      "name": "Color Hunt",
+      "url": "https://colorhunt.co",
+      "category": "Visuals, Art & Creativity",
+      "description": "Thousands of trendy hand-picked color palettes."
+    },
+    {
+      "id": 10,
+      "name": "Fontjoy",
+      "url": "https://fontjoy.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "Uses deep learning to generate perfect font pairings."
+    },
+    {
+      "id": 11,
+      "name": "Remove.bg",
+      "url": "https://www.remove.bg",
+      "category": "Visuals, Art & Creativity",
+      "description": "Instantly removes the background from any image for free."
+    },
+    {
+      "id": 12,
+      "name": "Photopea",
+      "url": "https://www.photopea.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "A free, browser-based alternative to Photoshop."
+    },
+    {
+      "id": 13,
+      "name": "Artbreeder",
+      "url": "https://www.artbreeder.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "Mash up images to create new characters and landscapes using AI."
+    },
+    {
+      "id": 14,
+      "name": "Pixilart",
+      "url": "https://www.pixilart.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "A community and tool for creating and sharing pixel art."
+    },
+    {
+      "id": 15,
+      "name": "Weave Silk",
+      "url": "http://weavesilk.com",
+      "category": "Visuals, Art & Creativity",
+      "description": "Create stunning symmetrical generative art with a few clicks."
+    },
+    {
+      "id": 16,
+      "name": "Khan Academy",
+      "url": "https://www.khanacademy.org",
+      "category": "Learning & Education",
+      "description": "Free, world-class education for anyone, anywhere."
+    },
+    {
+      "id": 17,
+      "name": "Coursera",
+      "url": "https://www.coursera.org",
+      "category": "Learning & Education",
+      "description": "Courses from top universities (many can be audited for free)."
+    },
+    {
+      "id": 18,
+      "name": "Duolingo",
+      "url": "https://www.duolingo.com",
+      "category": "Learning & Education",
+      "description": "Gamified language learning."
+    },
+    {
+      "id": 19,
+      "name": "TED",
+      "url": "https://www.ted.com",
+      "category": "Learning & Education",
+      "description": "Ideas worth spreading; thousands of inspiring talks."
+    },
+    {
+      "id": 20,
+      "name": "Instructables",
+      "url": "https://www.instructables.com",
+      "category": "Learning & Education",
+      "description": "DIY guides for making almost anything."
+    },
+    {
+      "id": 21,
+      "name": "HowStuffWorks",
+      "url": "https://www.howstuffworks.com",
+      "category": "Learning & Education",
+      "description": "Easy-to-understand explanations for how the world works."
+    },
+    {
+      "id": 22,
+      "name": "Wolfram Alpha",
+      "url": "https://www.wolframalpha.com",
+      "category": "Learning & Education",
+      "description": "A computational knowledge engine that answers factual queries."
+    },
+    {
+      "id": 23,
+      "name": "Open Culture",
+      "url": "https://www.openculture.com",
+      "category": "Learning & Education",
+      "description": "Free cultural and educational media (movies, audiobooks, courses)."
+    },
+    {
+      "id": 24,
+      "name": "Wikivoyage",
+      "url": "https://www.wikivoyage.org",
+      "category": "Learning & Education",
+      "description": "The free worldwide travel guide that anyone can edit."
+    },
+    {
+      "id": 25,
+      "name": "Class Central",
+      "url": "https://www.classcentral.com",
+      "category": "Learning & Education",
+      "description": "Search engine and reviews for free online courses (MOOCs)."
+    },
+    {
+      "id": 26,
+      "name": "Project Gutenberg",
+      "url": "https://www.gutenberg.org",
+      "category": "Learning & Education",
+      "description": "A library of over 60,000 free eBooks (mostly classics)."
+    },
+    {
+      "id": 27,
+      "name": "Lumosity",
+      "url": "https://www.lumosity.com",
+      "category": "Learning & Education",
+      "description": "Brain training games to improve memory and focus."
+    },
+    {
+      "id": 28,
+      "name": "Space.com",
+      "url": "https://www.space.com",
+      "category": "Learning & Education",
+      "description": "The premier source for space exploration news."
+    },
+    {
+      "id": 29,
+      "name": "History",
+      "url": "https://www.history.com",
+      "category": "Learning & Education",
+      "description": "The History Channel's official site, full of articles and videos."
+    },
+    {
+      "id": 30,
+      "name": "Codecademy",
+      "url": "https://www.codecademy.com",
+      "category": "Learning & Education",
+      "description": "Interactive coding lessons for beginners."
+    },
+    {
+      "id": 31,
+      "name": "10 Minute Mail",
+      "url": "https://10minutemail.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Temporary email addresses to avoid spam."
+    },
+    {
+      "id": 32,
+      "name": "TinyWow",
+      "url": "https://tinywow.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Free tools for PDF editing, video compressing, and converting."
+    },
+    {
+      "id": 33,
+      "name": "CamelCamelCamel",
+      "url": "https://camelcamelcamel.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Tracks Amazon price history."
+    },
+    {
+      "id": 34,
+      "name": "Ninite",
+      "url": "https://ninite.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Install and update all your programs at once."
+    },
+    {
+      "id": 35,
+      "name": "ManualsLib",
+      "url": "https://www.manualslib.com",
+      "category": "Useful Utilities & Tools",
+      "description": "A massive library of owner's manuals."
+    },
+    {
+      "id": 36,
+      "name": "JustWatch",
+      "url": "https://www.justwatch.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Find which streaming service has the movie/show you want."
+    },
+    {
+      "id": 37,
+      "name": "Eat This Much",
+      "url": "https://www.eatthismuch.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Automated meal planner based on your diet goals."
+    },
+    {
+      "id": 38,
+      "name": "PrintFriendly",
+      "url": "https://www.printfriendly.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Formats web pages for printing by removing ads."
+    },
+    {
+      "id": 39,
+      "name": "Down For Everyone Or Just Me",
+      "url": "https://downforeveryoneorjustme.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Checks if a website is down."
+    },
+    {
+      "id": 40,
+      "name": "Can I Use",
+      "url": "https://caniuse.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Browser support tables for web technologies."
+    },
+    {
+      "id": 41,
+      "name": "Privnote",
+      "url": "https://privnote.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Send notes that self-destruct after being read."
+    },
+    {
+      "id": 42,
+      "name": "FlightRadar24",
+      "url": "https://www.flightradar24.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Track planes in real-time globally."
+    },
+    {
+      "id": 43,
+      "name": "Have I Been Pwned",
+      "url": "https://haveibeenpwned.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Check if your email/password was in a data breach."
+    },
+    {
+      "id": 44,
+      "name": "BugMeNot",
+      "url": "http://bugmenot.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Find shared logins to bypass registration."
+    },
+    {
+      "id": 45,
+      "name": "AlternativeTo",
+      "url": "https://alternativeto.net",
+      "category": "Useful Utilities & Tools",
+      "description": "Crowdsourced software recommendations."
+    },
+    {
+      "id": 46,
+      "name": "Fast.com",
+      "url": "https://fast.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Netflix’s simple internet speed test."
+    },
+    {
+      "id": 47,
+      "name": "Dictation.io",
+      "url": "https://dictation.io",
+      "category": "Useful Utilities & Tools",
+      "description": "Accurate voice-to-text typing in the browser."
+    },
+    {
+      "id": 48,
+      "name": "Archive.is",
+      "url": "https://archive.is",
+      "category": "Useful Utilities & Tools",
+      "description": "Snapshot webpages to keep them forever (often bypasses paywalls)."
+    },
+    {
+      "id": 49,
+      "name": "VirusTotal",
+      "url": "https://www.virustotal.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Scan files or URLs with over 70 antivirus scanners."
+    },
+    {
+      "id": 50,
+      "name": "Skyscanner",
+      "url": "https://www.skyscanner.com",
+      "category": "Useful Utilities & Tools",
+      "description": "Find cheap flights."
+    },
+    {
+      "id": 51,
+      "name": "The Useless Web",
+      "url": "https://theuselessweb.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Takes you to a random, useless website."
+    },
+    {
+      "id": 52,
+      "name": "Pointer Pointer",
+      "url": "https://pointerpointer.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Finds a photo of someone pointing at your cursor."
+    },
+    {
+      "id": 53,
+      "name": "GeoGuessr",
+      "url": "https://www.geoguessr.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Guess where you are in the world using Street View."
+    },
+    {
+      "id": 54,
+      "name": "Little Alchemy 2",
+      "url": "https://littlealchemy2.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Combine elements to create new items."
+    },
+    {
+      "id": 55,
+      "name": "Akinator",
+      "url": "https://en.akinator.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "A genie that guesses the character you are thinking of."
+    },
+    {
+      "id": 56,
+      "name": "Hacker Typer",
+      "url": "https://hackertyper.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Mash keys to look like a movie hacker."
+    },
+    {
+      "id": 57,
+      "name": "Find The Invisible Cow",
+      "url": "https://findtheinvisiblecow.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Audio-based hide and seek game."
+    },
+    {
+      "id": 58,
+      "name": "Cookie Clicker",
+      "url": "https://cookieclicker.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "The original idle clicking game."
+    },
+    {
+      "id": 59,
+      "name": "QWOP",
+      "url": "http://www.foddy.net/Athletics.html",
+      "category": "Fun, Games & Time Killers",
+      "description": "A notoriously difficult running game."
+    },
+    {
+      "id": 60,
+      "name": "Wayback Machine",
+      "url": "https://web.archive.org",
+      "category": "Fun, Games & Time Killers",
+      "description": "See what websites looked like in the past."
+    },
+    {
+      "id": 61,
+      "name": "Giphy",
+      "url": "https://giphy.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Search engine for GIFs."
+    },
+    {
+      "id": 62,
+      "name": "Agar.io",
+      "url": "https://agar.io",
+      "category": "Fun, Games & Time Killers",
+      "description": "Eat smaller cells to grow larger in a multiplayer arena."
+    },
+    {
+      "id": 63,
+      "name": "Slither.io",
+      "url": "http://slither.io",
+      "category": "Fun, Games & Time Killers",
+      "description": "Modern multiplayer Snake."
+    },
+    {
+      "id": 64,
+      "name": "Paper.io",
+      "url": "https://paper.io",
+      "category": "Fun, Games & Time Killers",
+      "description": "Conquer territory by drawing lines."
+    },
+    {
+      "id": 65,
+      "name": "Typeracer",
+      "url": "https://play.typeracer.com",
+      "category": "Fun, Games & Time Killers",
+      "description": "Race against others by typing quotes."
+    },
+    {
+      "id": 66,
+      "name": "Radio Garden",
+      "url": "http://radio.garden",
+      "category": "Music & Audio",
+      "description": "Explore live radio stations by spinning a globe."
+    },
+    {
+      "id": 67,
+      "name": "A Soft Murmur",
+      "url": "https://asoftmurmur.com",
+      "category": "Music & Audio",
+      "description": "Create your own ambient noise mix."
+    },
+    {
+      "id": 68,
+      "name": "Every Noise at Once",
+      "url": "https://everynoise.com",
+      "category": "Music & Audio",
+      "description": "A map of music genres with audio samples."
+    },
+    {
+      "id": 69,
+      "name": "Incredibox",
+      "url": "https://www.incredibox.com",
+      "category": "Music & Audio",
+      "description": "Create a beatbox crew by dragging icons."
+    },
+    {
+      "id": 70,
+      "name": "Radiooooo",
+      "url": "https://radiooooo.com",
+      "category": "Music & Audio",
+      "description": "Pick a country and decade to hear popular music from then."
+    },
+    {
+      "id": 71,
+      "name": "MyNoise",
+      "url": "https://mynoise.net",
+      "category": "Music & Audio",
+      "description": "Customizable background noises."
+    },
+    {
+      "id": 72,
+      "name": "SomaFM",
+      "url": "https://somafm.com",
+      "category": "Music & Audio",
+      "description": "Commercial-free underground radio."
+    },
+    {
+      "id": 73,
+      "name": "Google Earth",
+      "url": "https://earth.google.com",
+      "category": "Science, Geography & Nature",
+      "description": "Explore the world from your browser."
+    },
+    {
+      "id": 74,
+      "name": "Windy.com",
+      "url": "https://www.windy.com",
+      "category": "Science, Geography & Nature",
+      "description": "Real-time weather visualization map."
+    },
+    {
+      "id": 75,
+      "name": "Stellarium Web",
+      "url": "https://stellarium-web.org",
+      "category": "Science, Geography & Nature",
+      "description": "A realistic planetarium for your computer."
+    },
+    {
+      "id": 76,
+      "name": "MarineTraffic",
+      "url": "https://www.marinetraffic.com",
+      "category": "Science, Geography & Nature",
+      "description": "Real-time tracking of ships."
+    },
+    {
+      "id": 77,
+      "name": "EarthCam",
+      "url": "https://www.earthcam.com",
+      "category": "Science, Geography & Nature",
+      "description": "Live webcam feeds from around the world."
+    },
+    {
+      "id": 78,
+      "name": "Scale of the Universe 2",
+      "url": "https://htwins.net/scale2/",
+      "category": "Science, Geography & Nature",
+      "description": "Zoom from the smallest particles to the universe."
+    },
+    {
+      "id": 79,
+      "name": "Zooniverse",
+      "url": "https://www.zooniverse.org",
+      "category": "Science, Geography & Nature",
+      "description": "Participate in citizen science research."
+    },
+    {
+      "id": 80,
+      "name": "Goodreads",
+      "url": "https://www.goodreads.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Track reading and find recommendations."
+    },
+    {
+      "id": 81,
+      "name": "Hemingway Editor",
+      "url": "https://hemingwayapp.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Tool to make your writing bold and clear."
+    },
+    {
+      "id": 82,
+      "name": "Thesaurus.com",
+      "url": "https://www.thesaurus.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Find synonyms for any word."
+    },
+    {
+      "id": 83,
+      "name": "Standard Ebooks",
+      "url": "https://standardebooks.org",
+      "category": "Reading, Writing & Literature",
+      "description": "Beautifully formatted free public domain ebooks."
+    },
+    {
+      "id": 84,
+      "name": "Library Genesis",
+      "url": "https://libgen.li",
+      "category": "Reading, Writing & Literature",
+      "description": "(Note: Check local laws) Search engine for scientific articles and books."
+    },
+    {
+      "id": 85,
+      "name": "Blinkist",
+      "url": "https://www.blinkist.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Summaries of non-fiction books."
+    },
+    {
+      "id": 86,
+      "name": "Pocket",
+      "url": "https://getpocket.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Save articles to read later."
+    },
+    {
+      "id": 87,
+      "name": "Medium",
+      "url": "https://medium.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Platform for reading articles on various topics."
+    },
+    {
+      "id": 88,
+      "name": "Wattpad",
+      "url": "https://www.wattpad.com",
+      "category": "Reading, Writing & Literature",
+      "description": "Community for reading and writing stories."
+    },
+    {
+      "id": 89,
+      "name": "FutureMe",
+      "url": "https://www.futureme.org",
+      "category": "Interesting Hidden Gems",
+      "description": "Write a letter to your future self."
+    },
+    {
+      "id": 90,
+      "name": "Natural Readers",
+      "url": "https://www.naturalreaders.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Text-to-speech tool."
+    },
+    {
+      "id": 91,
+      "name": "MuscleWiki",
+      "url": "https://musclewiki.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Visual guide to exercises for every muscle."
+    },
+    {
+      "id": 92,
+      "name": "Witeboard",
+      "url": "https://witeboard.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Simple, real-time shared whiteboard."
+    },
+    {
+      "id": 93,
+      "name": "Draw a Stickman",
+      "url": "https://drawastickman.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Interactive adventure where you draw the hero."
+    },
+    {
+      "id": 94,
+      "name": "McBroken",
+      "url": "https://mcbroken.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Tracks broken McDonald's ice cream machines."
+    },
+    {
+      "id": 95,
+      "name": "Where is this?",
+      "url": "https://www.where-is-this.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Community that identifies photo locations."
+    },
+    {
+      "id": 96,
+      "name": "Diffchecker",
+      "url": "https://www.diffchecker.com",
+      "category": "Interesting Hidden Gems",
+      "description": "Compare two text files to see differences."
+    },
+    {
+      "id": 97,
+      "name": "Just Delete Me",
+      "url": "https://justdeleteme.xyz",
+      "category": "Interesting Hidden Gems",
+      "description": "Direct links to delete accounts from web services."
+    },
+    {
+      "id": 98,
+      "name": "Terms of Service; Didn't Read",
+      "url": "https://tosdr.org",
+      "category": "Interesting Hidden Gems",
+      "description": "Rates website ToS policies."
+    },
+    {
+      "id": 99,
+      "name": "Worldometer",
+      "url": "https://www.worldometers.info",
+      "category": "Interesting Hidden Gems",
+      "description": "Real-time world statistics."
+    },
+    {
+      "id": 100,
+      "name": "Information is Beautiful",
+      "url": "https://informationisbeautiful.net",
+      "category": "Interesting Hidden Gems",
+      "description": "Visualizing data with stunning graphics."
+    }
+  ]
+}

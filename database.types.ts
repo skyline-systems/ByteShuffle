@@ -17,31 +17,46 @@ export type Database = {
       stories: {
         Row: {
           author: string
+          content_source_url: string | null
           created_at: string
           domain: string
           fetched_at: string
+          hn_object_id: string
           id: number
           score: number
+          screenshot_at: string | null
+          screenshot_url: string | null
+          subreddit: string | null
           title: string
           url: string
         }
         Insert: {
           author: string
+          content_source_url?: string | null
           created_at: string
           domain?: string
           fetched_at?: string
+          hn_object_id?: string
           id?: number
           score: number
+          screenshot_at?: string | null
+          screenshot_url?: string | null
+          subreddit?: string | null
           title: string
           url: string
         }
         Update: {
           author?: string
+          content_source_url?: string | null
           created_at?: string
           domain?: string
           fetched_at?: string
+          hn_object_id?: string
           id?: number
           score?: number
+          screenshot_at?: string | null
+          screenshot_url?: string | null
+          subreddit?: string | null
           title?: string
           url?: string
         }
