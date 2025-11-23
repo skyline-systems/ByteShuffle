@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       new URL("https://aiijacfkmnacrzrsduta.storage.supabase.co/**"),
     ],
   },
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"],
+  },
 };
 
 export default nextConfig;

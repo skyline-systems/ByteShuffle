@@ -27,9 +27,5 @@ export default async function Page() {
     new Array(data.length).fill(1).map((x, i) => i)
   );
 
-  return (
-    <div className="container mx-auto">
-      <App data={data} shuffledIndexes={shuffledIndexes} />
-    </div>
-  );
+  return <App data={data} shuffledIndexes={shuffledIndexes} />;
 }

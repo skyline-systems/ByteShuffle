@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ShuffleButton } from "./shuffle-button";
 import { Database } from "database.types";
 import Image from "next/image";
+import { Heart, ThumbsDown } from "lucide-react";
+import { Button } from "@heroui/button";
 
 interface AppProps {
   data: Array<
@@ -18,6 +20,8 @@ interface AppProps {
 export const App = ({ data, shuffledIndexes }: AppProps) => {
   const [start, setStart] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleLikeClick = () => {};
 
   const handleShuffle = () => {
     setStart(start + 1);
@@ -50,7 +54,22 @@ export const App = ({ data, shuffledIndexes }: AppProps) => {
 
   return (
     <>
-      <ShuffleButton handleShuffle={handleShuffle} />
+      <div className="p-2 bg-blue-100 flex items-center justify-center gap-2">
+        <Button isIconOnly aria-label="Like" color="danger" radius="sm">
+          <Heart />
+        </Button>
+        <ShuffleButton handleShuffle={handleShuffle} />
+        <Button
+          isIconOnly
+          aria-label="Like"
+          // color="blue.200"
+          variant="flat"
+          radius="sm"
+          className="bg-blue-200"
+        >
+          <ThumbsDown />
+        </Button>
+      </div>
       <div className="hidden">{sliceOfImages}</div>
       {sliceOfImages[currentIndex]}
       <p>{getDataSlice(currentIndex).title}</p>
