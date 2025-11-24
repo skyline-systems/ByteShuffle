@@ -10,8 +10,8 @@ import { Button } from "@heroui/button";
 interface AppProps {
   data: Array<
     Pick<
-      Database["public"]["Tables"]["stories"]["Row"],
-      "id" | "url" | "screenshot_url" | "title"
+      Database["public"]["Tables"]["websites"]["Row"],
+      "id" | "url" | "screenshot_url" | "title" | "description"
     >
   >;
   shuffledIndexes: Array<number>;
@@ -46,7 +46,7 @@ export const App = ({ data, shuffledIndexes }: AppProps) => {
         src={siteScreenshot}
         width={IMG_WIDTH}
         height={IMG_HEIGHT}
-        alt={site.title}
+        alt={site.title || ""}
         priority
       />
     );
@@ -74,6 +74,7 @@ export const App = ({ data, shuffledIndexes }: AppProps) => {
       {sliceOfImages[currentIndex]}
       <p>{getDataSlice(currentIndex).title}</p>
       <p>{getDataSlice(currentIndex).url}</p>
+      <p>{getDataSlice(currentIndex).description}</p>
     </>
   );
 };

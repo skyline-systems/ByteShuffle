@@ -77,6 +77,45 @@ export type Database = {
         }
         Relationships: []
       }
+      websites: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          dislikes: number
+          domain: string | null
+          id: number
+          likes: number
+          screenshot_url: string | null
+          title: string | null
+          url: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          dislikes?: number
+          domain?: string | null
+          id?: number
+          likes?: number
+          screenshot_url?: string | null
+          title?: string | null
+          url: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          dislikes?: number
+          domain?: string | null
+          id?: number
+          likes?: number
+          screenshot_url?: string | null
+          title?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

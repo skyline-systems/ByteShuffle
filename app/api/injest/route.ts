@@ -1,18 +1,7 @@
 import { createClient } from "@/utils/supbase/server";
 import { NextResponse } from "next/server";
 
-import dataset from "@/dataset/internetisbeautiful.json";
-
-interface Url {
-  url: string;
-  id: string;
-  title: string;
-  author: string;
-  score: number;
-  subreddit: string;
-  content_source_url: string;
-  created_at: number;
-}
+import dataset from "@/dataset/geminiinteresting.json";
 
 export async function GET() {
   return NextResponse.json({ data: dataset });
@@ -31,39 +20,40 @@ export async function POST() {
   const response = dataset;
 
   if (response) {
-    const urls: Url[] = response.data.children.map((item: any) => ({
-      url: item.data.url,
-      id: item.data.id,
-      title: item.data.title,
-      author: item.data.author,
-      score: item.data.score,
-      subreddit: item.data.subreddit,
-      content_source_url: `https://reddit.com${item.data.permalink}`,
-      created_at: item.data.created * 1000, // convert to milliseconds
-    }));
-    console.log({ urls });
+    // const urls: Url[] = response.websites.map((item) => ({
+    //   url: item.data.url,
+    //   id: item.data.id,
+    //   title: item.data.title,
+    //   author: item.data.author,
+    //   score: item.data.score,
+    //   subreddit: item.data.subreddit,
+    //   content_source_url: `https://reddit.com${item.data.permalink}`,
+    //   created_at: item.data.created * 1000, // convert to milliseconds
+    // }));
+    // console.log({ urls });
 
-    const { data, error } = await supabase.from("stories").upsert(
-      urls.map((site) => ({
-        hn_object_id: site.id,
-        title: site.title,
-        url: site.url,
-        domain: "",
-        author: site.author,
-        score: site.score,
-        subreddit: site.subreddit,
-        content_source_url: site.content_source_url,
-        created_at: new Date(site.created_at).toISOString(),
-        fetched_at: new Date().toISOString(),
-      })),
-      {
-        onConflict: "hn_object_id",
-      }
-    );
+    try {
+      const { data, error } = await supabase.from("websites").upsert(
+        response.websites.map((site) => ({
+          title: site.name,
+          url: site.url,
+          category: site.category,
+          description: site.description,
+        })),
+        {
+          onConflict: "url",
+        }
+      );
 
-    console.log({ data, error });
+      if (error) throw error;
 
-    return NextResponse.json({ items: urls.length, data: urls });
+      return NextResponse.json({ items: response.websites.length, data });
+    } catch (error) {
+      console.log(error);
+      return NextResponse.json({
+        error: "internal server error",
+      });
+    }
   }
 
   return NextResponse.json({ error: "Failed to fetch URLs" });

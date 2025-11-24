@@ -6,8 +6,8 @@ export default async function Page() {
   const supabase = await createClient();
   // TODO: Implement caching with redis
   const { data, error } = await supabase
-    .from("stories")
-    .select("id, url, screenshot_url, title")
+    .from("websites")
+    .select("id, url, screenshot_url, title, description")
     .not("screenshot_url", "is", null);
 
   if (error || !data || data.length === 0) {
@@ -17,6 +17,8 @@ export default async function Page() {
       </>
     );
   }
+
+  console.log({ data });
 
   /**
    * the `shuffledIndexes` array is an array of shuffled indices that correspond to an element

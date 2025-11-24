@@ -2,11 +2,24 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { createClient } from "@/utils/supbase/server";
 import Firecrawl from "@mendable/firecrawl-js";
 import { NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
 
-const uploadImageToSupabaseS3 = async (
-  imageArrayBuffer: ArrayBuffer,
-  imageId: string
-) => {
+// import scrapeJob from "@/dataset/scrapejob.json";
+// import scrapeJob from "@/dataset/scrapejob2.json";
+import scrapeJob from "@/dataset/scrapejob3.json";
+
+/**
+ * `domain` is the website URL with the scheme and subdomain stripped
+ */
+const uploadImageToSupabaseS3 = async ({
+  imageArrayBuffer,
+  domain,
+  imageFileName,
+}: {
+  imageArrayBuffer: ArrayBuffer;
+  domain: string;
+  imageFileName: string;
+}) => {
   const s3Client = new S3Client({
     forcePathStyle: true,
     region: "us-west-2",
@@ -17,16 +30,19 @@ const uploadImageToSupabaseS3 = async (
     },
   });
 
+  const BUCKET_NAME = "websites";
+  const KEY_NAME = `${domain}/${imageFileName}.png`;
+
   const uploadCommand = new PutObjectCommand({
-    Bucket: "screenshots",
-    Key: `${imageId}.png`,
+    Bucket: BUCKET_NAME,
+    Key: KEY_NAME,
     Body: Buffer.from(imageArrayBuffer),
     ContentType: "image/png",
   });
 
   await s3Client.send(uploadCommand);
 
-  return `https://aiijacfkmnacrzrsduta.storage.supabase.co/storage/v1/object/public/screenshots/${imageId}.png`;
+  return `https://aiijacfkmnacrzrsduta.storage.supabase.co/storage/v1/object/public/${BUCKET_NAME}/${KEY_NAME}`;
 };
 
 export async function POST() {
@@ -35,83 +51,102 @@ export async function POST() {
 
   try {
     const { data: urlsWithoutScreenshot } = await supabase
-      .from("stories")
-      .select("url, hn_object_id, screenshot_url")
-      .is("screenshot_url", null)
-      .limit(20);
+      .from("websites")
+      .select("id, url, screenshot_url")
+      .is("screenshot_url", null);
+    // .limit(20);
 
     if (urlsWithoutScreenshot && urlsWithoutScreenshot.length > 0) {
-      const screenshotResponses = await Promise.all(
-        urlsWithoutScreenshot.map((site) =>
-          firecrawl
-            .scrape(site.url, {
-              formats: [
-                {
-                  type: "screenshot",
-                  options: {
-                    width: 1280,
-                    height: 720,
-                    quality: 90,
-                  },
-                },
-              ],
-            })
-            .then((scrapeResponse) => ({
-              hn_object_id: site.hn_object_id,
-              screenshot: scrapeResponse.screenshot,
-            }))
-            .catch((error) => {
-              if (error.toString().toLowerCase().includes("error")) {
-                console.warn(
-                  `Firecrawl error for ${site.url} | ${site.hn_object_id}`
-                );
-                return {
-                  screenshot: null,
-                  hn_object_id: site.hn_object_id,
-                };
-              }
-              throw error;
-            })
-        )
-      );
+      // const scrapeResult = await Promise.all(
+      //   urlsWithoutScreenshot.map((site) =>
+      //     firecrawl
+      //       .scrape(site.url, {
+      //         proxy: "basic",
+      //         waitFor: 2000, // 2 seconds in milliseconds
+      //         formats: [
+      //           {
+      //             type: "screenshot",
+      //             quality: 90,
+      //             viewport: {
+      //               width: 1280,
+      //               height: 720,
+      //             },
+      //           },
+      //         ],
+      //         maxAge: 604800000, // 1 week in milliseconds
+      //       })
+      //       .catch((error) => {
+      //         console.log(site);
+      //         console.log(error);
+      //       })
+      //   )
+      // );
 
-      console.log("screenshotResponses", screenshotResponses);
+      // return NextResponse.json({ scrapeResult });
+
+      // removes http(s):// and optional www. and everything after the
+      // optional trailing slash at the end of the url
+      const preserveDomainAndTLD = (url: string) => {
+        return url
+          .replace(/^(?:https?:\/\/)?(?:www\.)?/, "")
+          .replace(/\/.*$/, "");
+      };
+
+      console.log(preserveDomainAndTLD("https://zoomquilt.org"));
+
+      const reMapScrapedWebsites = scrapeJob.scrapeResult
+        .filter((scrapedWebsite) => scrapedWebsite !== null)
+        .map((scrapedWebsite) => ({
+          screenshot: scrapedWebsite.screenshot,
+          domain: preserveDomainAndTLD(scrapedWebsite.metadata.url),
+          url: scrapedWebsite.metadata.sourceURL,
+        }));
+
+      // return NextResponse.json({ reMapScrapedWebsites });
 
       const imageArrayBuffers = await Promise.all(
-        screenshotResponses
+        reMapScrapedWebsites
           .filter((scrapeResponse) => scrapeResponse.screenshot)
           .map((scrapeResponse) =>
             fetch(scrapeResponse.screenshot as string).then(async (res) => ({
               arrayBuffer: await res.arrayBuffer(),
-              hn_object_id: scrapeResponse.hn_object_id,
+              domain: scrapeResponse.domain,
+              url: scrapeResponse.url,
             }))
           )
       );
 
-      console.log("imageArrayBuffers", imageArrayBuffers);
-
       const fileUrls = await Promise.all(
         imageArrayBuffers.map(async (image) => ({
-          screenshot_url: await uploadImageToSupabaseS3(
-            image.arrayBuffer,
-            image.hn_object_id
-          ),
-          hn_object_id: image.hn_object_id,
+          screenshot_url: await uploadImageToSupabaseS3({
+            imageArrayBuffer: image.arrayBuffer,
+            domain: image.domain,
+            imageFileName: uuidv4(),
+          }),
+          url: image.url,
+          domain: image.domain,
         }))
       );
 
-      console.log("fileUrls", fileUrls);
-
       await Promise.all(
-        fileUrls.map((fileUrl) =>
-          supabase
-            .from("stories")
-            .update({
-              screenshot_url: fileUrl.screenshot_url,
-              screenshot_at: new Date().toISOString(),
-            })
-            .eq("hn_object_id", fileUrl.hn_object_id)
-        )
+        fileUrls.map((fileUrl) => {
+          return (
+            supabase
+              .from("websites")
+              .update({
+                url: fileUrl.url,
+                screenshot_url: fileUrl.screenshot_url,
+                domain: fileUrl.domain,
+              })
+              // update the website whose url matches the stripped domain
+              .eq(
+                "url",
+                urlsWithoutScreenshot.find((u) =>
+                  fileUrl.domain.includes(preserveDomainAndTLD(u.url))
+                )?.url ?? ""
+              )
+          );
+        })
       );
 
       return NextResponse.json({ success: true });
