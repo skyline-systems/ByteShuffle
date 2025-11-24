@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 // import scrapeJob from "@/dataset/scrapejob.json";
 // import scrapeJob from "@/dataset/scrapejob2.json";
-import scrapeJob from "@/dataset/scrapejob3.json";
+// import scrapeJob from "@/dataset/scrapejob3.json";
 
 /**
  * `domain` is the website URL with the scheme and subdomain stripped
@@ -94,6 +94,8 @@ export async function POST() {
 
       console.log(preserveDomainAndTLD("https://zoomquilt.org"));
 
+      /*
+
       const reMapScrapedWebsites = scrapeJob.scrapeResult
         .filter((scrapedWebsite) => scrapedWebsite !== null)
         .map((scrapedWebsite) => ({
@@ -148,6 +150,7 @@ export async function POST() {
           );
         })
       );
+      */
 
       return NextResponse.json({ success: true });
     }
