@@ -17,6 +17,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ByteShuffle",
   description: "Shuffle into your next favorite website.",
+  openGraph: {
+    type: "website",
+    title: "ByteShuffle",
+    description: "Shuffle into your next favorite website.",
+    images: "/android-chrome-512x512.png",
+    url: "https://www.byteshuffle.net",
+  },
 };
 
 export default function RootLayout({
