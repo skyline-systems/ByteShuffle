@@ -1,7 +1,7 @@
 import { Database } from "@/database.types";
 import { Button, ButtonGroup, Card, CardBody } from "@heroui/react";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
-import { ExternalLink, Heart, ThumbsDown } from "lucide-react";
+import { ExternalLink, Heart, HeartCrack, ThumbsDown } from "lucide-react";
 import { JSX } from "react";
 
 interface MainProps {
@@ -43,14 +43,14 @@ export const Main = ({
           <ExternalLink />
         </a>
         <p>{siteData.description}</p>
-        <ButtonGroup className="mt-4 w-full md:w-[200px]">
+        <ButtonGroup className="mt-4 w-full">
           {like === null || like === 1 ? (
             <Button
-              endContent={<Heart />}
+              endContent={<Heart size="24" />}
               aria-label="Like"
               color="success"
               onPress={() => handleLike(1)}
-              className="w-[200px] text-white"
+              className="w-full text-white"
               isLoading={isPending}
               disabled={like === 1}
             >
@@ -59,11 +59,11 @@ export const Main = ({
           ) : null}
           {like === null || like === 0 ? (
             <Button
-              endContent={<ThumbsDown />}
-              aria-label="Like"
+              endContent={<HeartCrack size="24" />}
+              aria-label="Dislike"
               color="danger"
               onPress={() => handleLike(0)}
-              className="w-[200px]"
+              className="w-full text-white"
               isLoading={isPending}
               disabled={like === 0}
             >
