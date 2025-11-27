@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { ShuffleButton } from "./shuffle-button";
 import { Database } from "database.types";
 import Image from "next/image";
-import { Heart, ThumbsDown } from "lucide-react";
-import { Button } from "@heroui/button";
+import { Header } from "./header";
+import { Main } from "./main";
+import { updateLikesAction } from "../actions";
 
 interface AppProps {
   data: Array<
@@ -20,12 +21,36 @@ interface AppProps {
 export const App = ({ data, shuffledIndexes }: AppProps) => {
   const [start, setStart] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [like, setLike] = useState<number | null>(null);
+  const [fresh, setFresh] = useState(true);
+  const [likeResponse, updateLikes, isPending] = useActionState(
+    updateLikesAction,
+    null
+  );
 
-  const handleLikeClick = () => {};
+  useEffect(() => {
+    if (likeResponse?.data) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFresh(false);
+    }
+  }, [likeResponse]);
+
+  const handleLike = (likeValue: number) => {
+    setLike(likeValue);
+    const siteId = getDataSlice(currentIndex).id;
+
+    const fd = new FormData();
+    fd.set("siteId", siteId.toString());
+    fd.set("like", likeValue.toString());
+
+    startTransition(() => updateLikes(fd));
+  };
 
   const handleShuffle = () => {
     setStart(start + 1);
     setCurrentIndex((currentIndex + 1) % 5);
+    setLike(null);
+    setFresh(true);
   };
 
   const getDataSlice = (index: number) =>
@@ -35,14 +60,14 @@ export const App = ({ data, shuffledIndexes }: AppProps) => {
     const IMG_WIDTH = 800;
     const IMG_HEIGHT = (720 / 1280) * 800;
     const site = getDataSlice(i);
-    let siteScreenshot =
+    const siteScreenshot =
       site.screenshot_url ?? `https://placehold.co/${IMG_WIDTH}x${IMG_HEIGHT}`;
 
     return (
       <Image
         key={i}
         loading="eager"
-        className="mt-4"
+        className="rounded-lg"
         src={siteScreenshot}
         width={IMG_WIDTH}
         height={IMG_HEIGHT}
@@ -54,27 +79,21 @@ export const App = ({ data, shuffledIndexes }: AppProps) => {
 
   return (
     <>
-      <div className="p-2 bg-blue-100 flex items-center justify-center gap-2">
-        <Button isIconOnly aria-label="Like" color="danger" radius="sm">
-          <Heart />
-        </Button>
-        <ShuffleButton handleShuffle={handleShuffle} />
-        <Button
-          isIconOnly
-          aria-label="Like"
-          // color="blue.200"
-          variant="flat"
-          radius="sm"
-          className="bg-blue-200"
-        >
-          <ThumbsDown />
-        </Button>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Header handleShuffle={handleShuffle} />
+        <Main
+          siteData={getDataSlice(currentIndex)}
+          siteImage={sliceOfImages[currentIndex]}
+          like={like}
+          handleLike={handleLike}
+          isPending={isPending}
+          likeResponse={!fresh ? likeResponse : null}
+        />
+        <div className="hidden">{sliceOfImages}</div>
       </div>
-      <div className="hidden">{sliceOfImages}</div>
-      {sliceOfImages[currentIndex]}
-      <p>{getDataSlice(currentIndex).title}</p>
-      <p>{getDataSlice(currentIndex).url}</p>
-      <p>{getDataSlice(currentIndex).description}</p>
+      <div className="absolute h-[48px] bottom-10 md:top-4 left-[calc(50%-75px)]">
+        <ShuffleButton handleShuffle={handleShuffle} />
+      </div>
     </>
   );
 };

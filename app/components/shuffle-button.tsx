@@ -7,7 +7,14 @@ export const ShuffleButton = ({
 }) => {
   return (
     <div className="flex justify-center items-center">
-      <Button color="primary" radius="sm" onPress={handleShuffle}>
+      <Button
+        size="lg"
+        color="primary"
+        variant="shadow"
+        radius="sm"
+        onPress={handleShuffle}
+        className="w-[150px]"
+      >
         Shuffle
       </Button>
     </div>

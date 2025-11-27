@@ -121,7 +121,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_dislikes: { Args: { site_id: number }; Returns: number }
+      increment_likes: { Args: { site_id: number }; Returns: number }
     }
     Enums: {
       [_ in never]: never
