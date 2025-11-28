@@ -6,18 +6,21 @@ import { preserveDomainAndTLD } from "../utils";
 export const addWebsiteAction = async (_: unknown, formData: FormData) => {
   try {
     const supabase = await createClient();
+    const username = String(formData.get("username"));
+    let newUserId = null;
 
-    const { data: user, error: userError } = await supabase
-      .from("users")
-      .upsert(
-        { username: String(formData.get("username")) },
-        { onConflict: "username" }
-      )
-      .select("id")
-      .single();
+    if (username) {
+      const { data: user, error: userError } = await supabase
+        .from("users")
+        .upsert({ username }, { onConflict: "username" })
+        .select("id")
+        .single();
 
-    if (userError) {
-      throw new Error(userError.message);
+      if (userError) {
+        throw new Error(userError.message);
+      }
+
+      newUserId = user?.id ?? null;
     }
 
     const newUrl = preserveDomainAndTLD(
@@ -30,7 +33,7 @@ export const addWebsiteAction = async (_: unknown, formData: FormData) => {
       domain: preserveDomainAndTLD(newUrl),
       description: String(formData.get("websiteDescription")),
       user_submitted: true,
-      submitted_by: user.id,
+      submitted_by: newUserId ?? null,
     });
   } catch (error) {
     // TODO: Log error to Sentry
