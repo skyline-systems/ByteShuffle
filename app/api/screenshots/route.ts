@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supbase/server";
 import Firecrawl from "@mendable/firecrawl-js";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
+import { preserveDomainAndTLD } from "@/app/utils";
 
 // import scrapeJob from "@/dataset/scrapejob.json";
 // import scrapeJob from "@/dataset/scrapejob2.json";
@@ -83,14 +84,6 @@ export async function POST() {
       // );
 
       // return NextResponse.json({ scrapeResult });
-
-      // removes http(s):// and optional www. and everything after the
-      // optional trailing slash at the end of the url
-      const preserveDomainAndTLD = (url: string) => {
-        return url
-          .replace(/^(?:https?:\/\/)?(?:www\.)?/, "")
-          .replace(/\/.*$/, "");
-      };
 
       console.log(preserveDomainAndTLD("https://zoomquilt.org"));
 

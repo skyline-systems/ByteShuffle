@@ -77,8 +77,30 @@ export type Database = {
         }
         Relationships: []
       }
+      users: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: number
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: number
+          username: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: number
+          username?: string
+        }
+        Relationships: []
+      }
       websites: {
         Row: {
+          approved: boolean
           category: string | null
           created_at: string
           description: string | null
@@ -87,10 +109,13 @@ export type Database = {
           id: number
           likes: number
           screenshot_url: string | null
+          submitted_by: number | null
           title: string | null
           url: string
+          user_submitted: boolean | null
         }
         Insert: {
+          approved?: boolean
           category?: string | null
           created_at?: string
           description?: string | null
@@ -99,10 +124,13 @@ export type Database = {
           id?: number
           likes?: number
           screenshot_url?: string | null
+          submitted_by?: number | null
           title?: string | null
           url: string
+          user_submitted?: boolean | null
         }
         Update: {
+          approved?: boolean
           category?: string | null
           created_at?: string
           description?: string | null
@@ -111,10 +139,20 @@ export type Database = {
           id?: number
           likes?: number
           screenshot_url?: string | null
+          submitted_by?: number | null
           title?: string | null
           url?: string
+          user_submitted?: boolean | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "websites_submitted_by_fkey"
+            columns: ["submitted_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

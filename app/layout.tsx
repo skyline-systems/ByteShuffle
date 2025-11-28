@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "./providers";
 
 import "./global.css";
+import { Header } from "./components/header";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -34,7 +35,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistMono.className} antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Header />
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

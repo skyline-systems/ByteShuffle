@@ -4,7 +4,6 @@ import { startTransition, useActionState, useEffect, useState } from "react";
 import { ShuffleButton } from "./shuffle-button";
 import { Database } from "database.types";
 import Image from "next/image";
-import { Header } from "./header";
 import { Main } from "./main";
 import { updateLikesAction } from "../actions";
 
@@ -79,19 +78,16 @@ export const App = ({ data, shuffledIndexes }: AppProps) => {
 
   return (
     <>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Header handleShuffle={handleShuffle} />
-        <Main
-          siteData={getDataSlice(currentIndex)}
-          siteImage={sliceOfImages[currentIndex]}
-          like={like}
-          handleLike={handleLike}
-          isPending={isPending}
-          likeResponse={!fresh ? likeResponse : null}
-        />
-        <div className="hidden">{sliceOfImages}</div>
-      </div>
-      <div className="absolute h-[48px] bottom-10 md:top-4 left-[calc(50%-75px)]">
+      <Main
+        siteData={getDataSlice(currentIndex)}
+        siteImage={sliceOfImages[currentIndex]}
+        like={like}
+        handleLike={handleLike}
+        isPending={isPending}
+        likeResponse={!fresh ? likeResponse : null}
+      />
+      <div className="hidden">{sliceOfImages}</div>
+      <div className="absolute h-12 bottom-10 md:top-4 left-[calc(50%-75px)]">
         <ShuffleButton handleShuffle={handleShuffle} />
       </div>
     </>

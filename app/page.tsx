@@ -8,7 +8,8 @@ export default async function Page() {
   const { data, error } = await supabase
     .from("websites")
     .select("id, url, screenshot_url, title, description")
-    .not("screenshot_url", "is", null);
+    .not("screenshot_url", "is", null)
+    .eq("approved", true);
 
   if (error || !data || data.length === 0) {
     return (
@@ -17,8 +18,6 @@ export default async function Page() {
       </>
     );
   }
-
-  console.log({ data });
 
   /**
    * the `shuffledIndexes` array is an array of shuffled indices that correspond to an element
